@@ -1,6 +1,6 @@
 import { useCameraPermissions } from 'expo-camera';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View } from "react-native";
+import { StyleProp, StyleSheet, Text, TextStyle, View, ViewStyle } from "react-native";
 import Botao from '../components/Botao';
 import Permissao from '../components/Permissao';
 import QRScanner from '../components/QRScanner/indesx';
@@ -10,8 +10,8 @@ import BarraSuperior from '../components/BarraSuperior';
 
 export default function CameraTela() {
     const [permission, requestPermission] = useCameraPermissions();
-    const [scanned, setScanned] = useState(false);
-    const [cameraActive, setCameraActive] = useState(false);
+    const [scanned, setScanned] = useState<boolean>(false);
+    const [cameraActive, setCameraActive] = useState<boolean>(false);
     const [scannedData, setScannedData] = useState<string | null>(null);
     
     if (!permission) {
@@ -23,7 +23,7 @@ export default function CameraTela() {
         )
     }
     
-    const aoClicar = () => {
+    const aoClicar = (): void => {
         setCameraActive(true);
         setScanned(false);
         setScannedData(null);
@@ -63,7 +63,14 @@ export default function CameraTela() {
     );
 }
 
-const styles = StyleSheet.create({
+interface Styles {
+    container: ViewStyle;
+    containerConteudo: ViewStyle;
+    resultContainer: ViewStyle;
+    resultText: TextStyle;
+}
+
+const styles = StyleSheet.create<Styles>({
     container: {
         flex: 1,
         alignItems: 'center',

@@ -13,5 +13,5 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-, "app/screens/HomeTela.tsx", "app/components/QRScanner/indesx.jsx"  ]
+, "app/screens/HomeTela.tsx", "app/components/QRScanner/indesx.tsx"  ]
 }

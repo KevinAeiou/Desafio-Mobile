@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Animated, Easing, StyleSheet, Text, View } from "react-native";
+import { Animated, Easing, StyleProp, StyleSheet, Text, TextStyle, View, ViewStyle } from "react-native";
 import CampoTexto from "../components/CampoTexto";
 import IndicadorProgresso from "../components/IndicadorProgresso";
 import Lista from "../components/Lista";
@@ -16,12 +16,12 @@ interface Post {
 export default function HomeTela() {
   const [posts, setPosts] = useState<Post[]>([]);
   const [postsFiltrados, setPostsFiltrados] = useState<Post[]>([]);
-  const [carregando, setCarregando] = useState(false);
-  const [showSearch, setShowSearch] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [searchWidth] = useState(new Animated.Value(0));
+  const [carregando, setCarregando] = useState<boolean>(false);
+  const [showSearch, setShowSearch] = useState<boolean>(false);
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [searchWidth] = useState<Animated.Value>(new Animated.Value(0));
 
-  const mostraDados = (dados: Post | Post[] | null) => {
+  const mostraDados = (dados: Post | Post[] | null): void => {
     setCarregando(true);
     
     if(dados === null) {
@@ -38,7 +38,7 @@ export default function HomeTela() {
     setCarregando(false);
   };
 
-  const aoBuscar = (texto: string) => {
+  const aoBuscar = (texto: string): void => {
     setSearchQuery(texto);
     if (texto.length === 0) {
       setPostsFiltrados(posts);
@@ -49,7 +49,7 @@ export default function HomeTela() {
     }
   };
 
-  const toogleSearch = () => {
+  const toogleSearch = (): void => {
     if (showSearch) {
       setSearchQuery('');
       setPostsFiltrados(posts);
@@ -109,7 +109,16 @@ export default function HomeTela() {
   );
 }
 
-const styles = StyleSheet.create({
+interface Styles {
+  conteiner: ViewStyle;
+  conteinerCampos: ViewStyle;
+  searchContainer: ViewStyle;
+  text: TextStyle;
+  emptyText: TextStyle;
+  title: TextStyle;
+}
+
+const styles = StyleSheet.create<Styles>({
   conteiner: {
     flex: 1,
     justifyContent: "center",
