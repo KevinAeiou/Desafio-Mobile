@@ -37,3 +37,28 @@ yarn-error.*
 *.tsbuildinfo
 
 app-example
+
+# Ambiente de desenvolvimento (VSCode)
+.vscode/
+!.vscode/settings.json
+!.vscode/extensions.json
+*.code-workspace
+
+# Configurações do IDE
+.idea/
+*.swp
+*.swo
+
+# Variáveis de ambiente
+.env
+.env.local
+.env*.local
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Testes
+coverage/
+*.junit
+*.xml
